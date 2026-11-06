@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calculadora Python</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <main class="calculadora">
+
+        <!-- Cabeçalho -->
+        <header class="cabecalho">
+
+            <div>
+                <h1>CALCULADORA</h1>
+                <p>Python Edition</p>
+            </div>
+
+            <button class="btn-tema" id="btnTema" type="button" title="Alternar tema">
+                ☀
+            </button>
+        </header>
+
+        <!-- Visor -->
+        <section class="visor">
+
+            <div class="expressao">
+                {{ expressao or '' }}
+            </div>
+
+            <div class="resultado">
+                {{ resultado if resultado is not none else '0' }}
+            </div>
+
+            {% if erro %}
+            <p class="mensagem-erro">{{ erro }}</p>
+            {% endif %}
+
+        </section>
+
+        <!-- Teclado -->
+        <form method="POST" action="/" class="teclado">
+
+            <input type="hidden" name="expressao" value="{{ expressao or '' }}">
+
+            <button type="submit" class="btn especial" name="acao" value="limpar">AC</button>
+            <button type="submit" class="btn especial" name="acao" value="apagar">⌫</button>
+            <button type="submit" class="btn especial" name="valor" value="%">%</button>
+            <button type="submit" class="btn operador" name="valor" value="/">÷</button>
+
+            <button type="submit" class="btn" name="valor" value="7">7</button>
+            <button type="submit" class="btn" name="valor" value="8">8</button>
+            <button type="submit" class="btn" name="valor" value="9">9</button>
+            <button type="submit" class="btn operador" name="valor" value="*">×</button>
+
+            <button type="submit" class="btn" name="valor" value="4">4</button>
+            <button type="submit" class="btn" name="valor" value="5">5</button>
+            <button type="submit" class="btn" name="valor" value="6">6</button>
+            <button type="submit" class="btn operador" name="valor" value="-">-</button>
+
+            <button type="submit" class="btn" name="valor" value="1">1</button>
+            <button type="submit" class="btn" name="valor" value="2">2</button>
+            <button type="submit" class="btn" name="valor" value="3">3</button>
+            <button type="submit" class="btn operador" name="valor" value="+">+</button>
+
+            <button type="submit" class="btn" name="acao" value="inverter">+/-</button>
+            <button type="submit" class="btn" name="valor" value="0">0</button>
+            <button type="submit" class="btn" name="valor" value=".">.</button>
+            <button type="submit" class="btn igual" name="acao" value="calcular">=</button>
+
+        </form>
+
+        <!-- Rodapé -->
+        <footer>
+            Desenvolvido com Python 🐍
+        </footer>
+
+    </main>
+    <script src="{{ url_for('static', filename='js/calculadora.js') }}"></script>
+</body>
+
+</html>
